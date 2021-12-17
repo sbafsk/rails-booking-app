@@ -16,10 +16,7 @@ moment.locale("es")
 import { useBookings } from "../../context"
 import { IBookingForm } from "../../types"
 
-const rooms = [
-  { name: "sala grande", value: "sala-grande" },
-  { name: "sala chica", value: "sala-chica" }
-]
+const rooms = [{ name: "sala meetings", value: "sala-1" }]
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -112,32 +109,22 @@ export default function BookingForm() {
           setBookingsByDay(moment(values.day).toDate())
         }, [values.day])
 
-        useEffect(() => {
-          setBookingsByRoom(values.room)
-        }, [values.room])
+        // useEffect(() => {
+        //   setBookingsByRoom(values.room)
+        // }, [values.room])
 
         return (
           <Form className={classes.form}>
-            <FormControl variant="outlined">
-              <TextField
-                label="Sala"
-                select
-                id="room"
-                variant="outlined"
-                value={values.room}
-                onChange={handleChange("room")}
-                error={touched.room && Boolean(errors.room)}
-                helperText={touched.room && errors.room}
-              >
-                {rooms.map((r) => {
-                  return (
-                    <MenuItem value={r.value} key={r.value}>
-                      {r.name}
-                    </MenuItem>
-                  )
-                })}
-              </TextField>
-            </FormControl>
+            <TextField
+              id="name"
+              name="name"
+              label="Nombre"
+              variant="outlined"
+              value={values.name}
+              onChange={handleChange("name")}
+              error={touched.name && Boolean(errors.name)}
+              helperText={touched.name && errors.name}
+            />
             <Box className={classes.dateInputs}>
               <TextField
                 id="day"
@@ -188,17 +175,10 @@ export default function BookingForm() {
                 helperText={touched.toTime && errors.toTime}
               />
             </Box>
+
+            {/*
+            EMAIL AND ROOM SELECTION NOT NEEDED FOR NOW...
             <TextField
-              id="name"
-              name="name"
-              label="Nombre"
-              variant="outlined"
-              value={values.name}
-              onChange={handleChange("name")}
-              error={touched.name && Boolean(errors.name)}
-              helperText={touched.name && errors.name}
-            />
-            {/* <TextField
               id="email"
               name="email"
               label="Email"
@@ -207,7 +187,27 @@ export default function BookingForm() {
               onChange={handleChange("email")}
               error={touched.email && Boolean(errors.email)}
               helperText={touched.email && errors.email}
-            /> */}
+            />
+            <FormControl variant="outlined">
+              <TextField
+                label="Sala"
+                select
+                id="room"
+                variant="outlined"
+                value={values.room}
+                onChange={handleChange("room")}
+                error={touched.room && Boolean(errors.room)}
+                helperText={touched.room && errors.room}
+              >
+                {rooms.map((r) => {
+                  return (
+                    <MenuItem value={r.value} key={r.value}>
+                      {r.name}
+                    </MenuItem>
+                  )
+                })}
+              </TextField>
+            </FormControl> */}
             <Button
               type="submit"
               variant="outlined"

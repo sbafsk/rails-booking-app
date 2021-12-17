@@ -35,7 +35,7 @@ export const useBookings = (): IUseBookings => {
 const initialState: IBookingState = {
   bookings: [],
   loading: false,
-  filter: { date: new Date(), room: "sala-grande" },
+  filter: { date: new Date(), room: "sala-1" },
   error: null,
   dialog: null
 }
