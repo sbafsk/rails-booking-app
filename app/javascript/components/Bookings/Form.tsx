@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import { Link } from "react-router-dom";
 import {
   makeStyles,
   Button,
@@ -219,7 +220,12 @@ export default function BookingForm() {
             >
               Guardar
             </Button>
-            <BookingList />
+            <Button variant="outlined">
+              <Link to="/listado">Listado de Reservas</Link>
+            </Button>
+            
+
+
           </Form>
           
         )
