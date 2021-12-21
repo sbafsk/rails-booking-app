@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom";
 import {
   makeStyles,
   Table,
@@ -36,9 +37,6 @@ export default function AllBookingTable() {
     !!bookings &&
     bookings
       .sort((a, b) => (a.from > b.from ? 1 : -1))
-      .filter((b: IBooking) => {
-        return moment(b.from).format("LL") === moment(dateFilter).format("LL")
-      })
       .map((b: IBooking) => {
         return (
           <TableRow key={b.id}>
@@ -56,7 +54,7 @@ export default function AllBookingTable() {
   return (
     <TableContainer className={classes.tableContainer}>
       <Typography align="center" variant="h6">
-        {moment(dateFilter).format("LL")}
+        Listado de reservas
       </Typography>
       {filteredBookings.length != 0 ? (
         <Table aria-label="booking table">
@@ -69,11 +67,14 @@ export default function AllBookingTable() {
           </TableHead>
           <TableBody>{filteredBookings}</TableBody>
         </Table>
+        
       ) : (
         <Typography className={classes.sub} variant="subtitle1">
           No hay reservas para este día.
         </Typography>
       )}
+
+      <Link to="/">Home</Link>
     </TableContainer>
   )
 }
