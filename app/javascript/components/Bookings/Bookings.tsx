@@ -1,8 +1,10 @@
 import React from "react"
-import { Box, makeStyles } from "@material-ui/core"
+import { Box, makeStyles, Button } from "@material-ui/core"
+
 
 import BookingForm from "./Form"
 import BookingTable from "./Table"
+import BookingList from "./AllBookings"
 
 const useStyles = makeStyles((theme) => ({
   bookingBox: {
@@ -22,6 +24,8 @@ const Bookings = () => {
     <Box className={classes.bookingBox}>
       <BookingForm />
       <BookingTable />
+      
+ 
     </Box>
   )
 }

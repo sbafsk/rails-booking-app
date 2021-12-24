@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import { Link } from "react-router-dom";
 import {
   makeStyles,
   Button,
@@ -10,16 +11,18 @@ import {
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
 import moment from "moment"
-
+import BookingList from "./AllBookings"
 moment.locale("es")
 
 import { useBookings } from "../../context"
 import { IBookingForm } from "../../types"
 
+
 const rooms = [
   { name: "sala grande", value: "sala-grande" },
   { name: "sala chica", value: "sala-chica" }
 ]
+
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -84,6 +87,8 @@ export default function BookingForm() {
       })
     }
   }
+
+ 
 
   const initialValues: IBookingForm = {
     room: filter.room,
@@ -215,7 +220,14 @@ export default function BookingForm() {
             >
               Guardar
             </Button>
+            <Button variant="outlined">
+              <Link to="/listado">Listado de Reservas</Link>
+            </Button>
+            
+
+
           </Form>
+          
         )
       }}
     </Formik>
