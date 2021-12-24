@@ -18,6 +18,8 @@ moment.locale("es")
 import { useBookings } from "../../context"
 
 import { IBooking } from "../../types"
+import CalendarBookings from "./CalendarBookings";
+import CalendarNewBookings from "./CalendarNewBookings";
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -52,6 +54,8 @@ export default function AllBookingTable() {
       })
 
   return (
+    <div>
+
     <TableContainer className={classes.tableContainer}>
       <Typography align="center" variant="h6">
         Listado de reservas
@@ -74,7 +78,10 @@ export default function AllBookingTable() {
         </Typography>
       )}
 
-      <Link to="/">Home</Link>
+      <Link to="/">Inicio</Link>
     </TableContainer>
+   
+    <CalendarNewBookings></CalendarNewBookings>
+    </div>
   )
 }

@@ -19,8 +19,7 @@ import { IBookingForm } from "../../types"
 
 
 const rooms = [
-  { name: "sala grande", value: "sala-grande" },
-  { name: "sala chica", value: "sala-chica" }
+  { name: "sala grande", value: "sala-grande" }
 ]
 
 
@@ -220,9 +219,11 @@ export default function BookingForm() {
             >
               Guardar
             </Button>
-            <Button variant="outlined">
-              <Link to="/listado">Listado de Reservas</Link>
-            </Button>
+            <Button  variant="outlined">
+            <Link to="/listado" style={{ textDecoration: 'none',
+                                          hover: 'none' }}>Listado de Reservas</Link></Button>
+              
+            
             
 
 
