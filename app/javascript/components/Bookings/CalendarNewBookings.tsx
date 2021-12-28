@@ -8,7 +8,9 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import appointments from './demo-data/today-appointments';
+import moment from 'moment';
+import { useBookings } from '../../context';
+
 // import { useBookings } from "../../../context"
 
 const useStyles = makeStyles(theme => ({
@@ -61,8 +63,50 @@ const DayScaleCell = (props) => {
   } return <WeekView.DayScaleCell {...props} />;
 };
 
-export default () => (
-  <Paper>
+const WeekCalendar = () => {
+
+
+
+  
+const currentDate = moment();
+let date = currentDate.date();
+const { bookings, filter } = useBookings()
+// const { date: dateFilter } = filter
+
+const makeTodayAppointment = (startDate, endDate) => {
+  const days = moment(startDate).diff(endDate, 'days');
+  const nextStartDate = moment(startDate)
+    .year(currentDate.year())
+    .month(currentDate.month())
+    .date(date);
+  const nextEndDate = moment(endDate)
+    .year(currentDate.year())
+    .month(currentDate.month())
+    .date(date + days);
+
+  return {
+    startDate: nextStartDate.toDate(),
+    endDate: nextEndDate.toDate(),
+  };
+};
+
+const convertFromBookingToAppointment = ({from, to, ...rest}) => ({startDate: from, endDate: to, ...rest})
+
+
+
+const appointments = bookings.map(convertFromBookingToAppointment).map(({ startDate, endDate, ...restArgs }) => {
+  const result = {
+    ...makeTodayAppointment(startDate, endDate),
+    ...restArgs,
+  };
+
+  console.log(restArgs)
+  date += 1;
+  if (date > 31) date = 1;
+  return result;
+});
+
+  return <Paper>
     <Scheduler
       data={appointments}
       height={660}
@@ -77,5 +121,7 @@ export default () => (
       <Appointments />
     </Scheduler>
   </Paper>
-);
+};
 
+
+export default WeekCalendar
