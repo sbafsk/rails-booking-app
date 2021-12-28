@@ -9,6 +9,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import appointments from './demo-data/today-appointments';
+// import { useBookings } from "../../../context"
 
 const useStyles = makeStyles(theme => ({
   todayCell: {

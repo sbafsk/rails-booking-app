@@ -1,8 +1,11 @@
 import moment from 'moment';
 import  {appointments}  from './appointments';
+// import { useBookings } from "../../../context"
 
 const currentDate = moment();
 let date = currentDate.date();
+// const { bookings, filter } = useBookings()
+// const { date: dateFilter } = filter
 
 const makeTodayAppointment = (startDate, endDate) => {
   const days = moment(startDate).diff(endDate, 'days');
@@ -21,11 +24,17 @@ const makeTodayAppointment = (startDate, endDate) => {
   };
 };
 
-export default appointments.map(({ startDate, endDate, ...restArgs }) => {
+const fn = ({from, to, ...rest}) => ({startDate: from, endDate: to, ...rest})
+
+
+
+export default appointments.map(fn).map(({ startDate, endDate, ...restArgs }) => {
   const result = {
     ...makeTodayAppointment(startDate, endDate),
     ...restArgs,
   };
+
+  console.log(restArgs)
   date += 1;
   if (date > 31) date = 1;
   return result;

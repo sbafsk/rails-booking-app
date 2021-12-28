@@ -4,7 +4,7 @@ import { Box, makeStyles, Button } from "@material-ui/core"
 
 import BookingForm from "./Form"
 import BookingTable from "./Table"
-import BookingList from "./AllBookings"
+
 
 const useStyles = makeStyles((theme) => ({
   bookingBox: {
