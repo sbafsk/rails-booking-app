@@ -19,7 +19,7 @@ import { useBookings } from "../../context"
 
 import { IBooking } from "../../types"
 import DemoCalendar from "./DemoCalendar";
-
+import CalendarNewBookings from "./CalendarNewBookings";
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
     margin: theme.spacing(3),
@@ -55,34 +55,34 @@ export default function AllBookingTable() {
   return (
     <div>
 
-    <TableContainer className={classes.tableContainer}>
-      <Typography align="center" variant="h6">
-        Listado de reservas
-      </Typography>
-      {filteredBookings.length != 0 ? (
-        <Table aria-label="booking table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Hora</TableCell>
-              <TableCell>Usuario</TableCell>
-              <TableCell>Sala</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>{filteredBookings}</TableBody>
-        </Table>
-        
-      ) : (
-        <Typography className={classes.sub} variant="subtitle1">
-          No hay reservas para este día.
+      <TableContainer className={classes.tableContainer}>
+        <Typography align="center" variant="h6">
+          Listado de reservas
         </Typography>
-      )}
+        {filteredBookings.length != 0 ? (
+          <Table aria-label="booking table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Hora</TableCell>
+                <TableCell>Usuario</TableCell>
+                <TableCell>Sala</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>{filteredBookings}</TableBody>
+          </Table>
 
-      <Link to="/">Inicio</Link>
-    </TableContainer>
-{/*    
-    <CalendarNewBookings></CalendarNewBookings> */}
+        ) : (
+          <Typography className={classes.sub} variant="subtitle1">
+            No hay reservas para este día.
+          </Typography>
+        )}
 
-    <DemoCalendar></DemoCalendar>
+        <Link to="/">Inicio</Link>
+      </TableContainer>
+
+
+
+      {/* <DemoCalendar></DemoCalendar> */}
     </div>
   )
 }
