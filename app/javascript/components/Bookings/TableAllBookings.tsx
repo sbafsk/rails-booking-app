@@ -77,7 +77,7 @@ export default function AllBookingTable() {
           </Typography>
         )}
 
-        <Link to="/">Inicio</Link>
+
       </TableContainer>
 
 
