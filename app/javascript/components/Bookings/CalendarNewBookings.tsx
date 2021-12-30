@@ -8,14 +8,14 @@ import {
   Appointments,
   AppointmentTooltip,
   MonthView,
- Toolbar
-
- 
+  Toolbar,
+  DateNavigator,
+  ViewSwitcher,
+  EditRecurrenceMenu,
+  DragDropProvider
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
 import { alpha } from '@material-ui/core/styles/colorManipulator';
-
-import moment from 'moment';
 import { useBookings } from '../../context';
 
 
@@ -70,40 +70,21 @@ const DayScaleCell = (props) => {
   } return <WeekView.DayScaleCell {...props} />;
 };
 
-const ToolBarView = () => {
-  const Root = React.useCallback(
-    (props) => {
-      console.log(currentDate);
-      return <Toolbar.Root {...props} style={{ background: "red" }} />;
-    },
-    [currentDate]
-  );
-}
-
 const WeekCalendar = () => {
   const { bookings } = useBookings()
-  const convertFromBookingToAppointment = ({ from, to, ...rest }) => ({ startDate: from, endDate: to, ...rest })
+  const convertFromBookingToAppointment = ({ from, to, userName, ...rest }) => ({ startDate: from, endDate: to, displayName: userName, ...rest })
   const appointments = bookings.map(convertFromBookingToAppointment)
 
 
   return <Paper>
-
- 
     <Scheduler
+      height={600}
       data={appointments}
     >
       <DayView
         startDayHour={8}
         endDayHour={13}
       />
-      <Appointments />
-      <AppointmentTooltip />
-    </Scheduler>
-
-    <Scheduler
-      data={appointments}
-      height={660}
-    >
       <ViewState />
       <WeekView
         startDayHour={9}
@@ -111,17 +92,18 @@ const WeekCalendar = () => {
         timeTableCellComponent={TimeTableCell}
         dayScaleCellComponent={DayScaleCell}
       />
-      <Appointments />
-    </Scheduler>
-
-    <Scheduler
-      data={appointments}
-    >
       <ViewState
         currentDate={currentDate}
       />
       <MonthView />
       <Appointments />
+      <AppointmentTooltip />
+      <Toolbar />
+      <DateNavigator />
+      <ViewSwitcher />
+
+
+
     </Scheduler>
   </Paper>
 };
