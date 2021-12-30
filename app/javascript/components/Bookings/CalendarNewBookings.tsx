@@ -7,12 +7,13 @@ import {
   DayView,
   Appointments,
   AppointmentTooltip,
-  MonthView
+  MonthView,
+ Toolbar
 
  
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { alpha } from '@material-ui/core/styles/colorManipulator';
 
 import moment from 'moment';
 import { useBookings } from '../../context';
@@ -20,28 +21,28 @@ import { useBookings } from '../../context';
 
 const useStyles = makeStyles(theme => ({
   todayCell: {
-    backgroundColor: fade(theme.palette.primary.main, 0.1),
+    backgroundColor: alpha(theme.palette.primary.main, 0.1),
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main, 0.14),
+      backgroundColor: alpha(theme.palette.primary.main, 0.14),
     },
     '&:focus': {
-      backgroundColor: fade(theme.palette.primary.main, 0.16),
+      backgroundColor: alpha(theme.palette.primary.main, 0.16),
     },
   },
   weekendCell: {
-    backgroundColor: fade(theme.palette.action.disabledBackground, 0.04),
+    backgroundColor: alpha(theme.palette.action.disabledBackground, 0.04),
     '&:hover': {
-      backgroundColor: fade(theme.palette.action.disabledBackground, 0.04),
+      backgroundColor: alpha(theme.palette.action.disabledBackground, 0.04),
     },
     '&:focus': {
-      backgroundColor: fade(theme.palette.action.disabledBackground, 0.04),
+      backgroundColor: alpha(theme.palette.action.disabledBackground, 0.04),
     },
   },
   today: {
-    backgroundColor: fade(theme.palette.primary.main, 0.16),
+    backgroundColor: alpha(theme.palette.primary.main, 0.16),
   },
   weekend: {
-    backgroundColor: fade(theme.palette.action.disabledBackground, 0.06),
+    backgroundColor: alpha(theme.palette.action.disabledBackground, 0.06),
   },
 }));
 
@@ -69,6 +70,16 @@ const DayScaleCell = (props) => {
   } return <WeekView.DayScaleCell {...props} />;
 };
 
+const ToolBarView = () => {
+  const Root = React.useCallback(
+    (props) => {
+      console.log(currentDate);
+      return <Toolbar.Root {...props} style={{ background: "red" }} />;
+    },
+    [currentDate]
+  );
+}
+
 const WeekCalendar = () => {
   const { bookings } = useBookings()
   const convertFromBookingToAppointment = ({ from, to, ...rest }) => ({ startDate: from, endDate: to, ...rest })
@@ -76,6 +87,8 @@ const WeekCalendar = () => {
 
 
   return <Paper>
+
+ 
     <Scheduler
       data={appointments}
     >
