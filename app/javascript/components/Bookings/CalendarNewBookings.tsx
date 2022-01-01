@@ -72,7 +72,7 @@ const DayScaleCell = (props) => {
 
 const WeekCalendar = () => {
   const { bookings } = useBookings()
-  const convertFromBookingToAppointment = ({ from, to, userName, ...rest }) => ({ startDate: from, endDate: to, displayName: userName, ...rest })
+  const convertFromBookingToAppointment = ({ from, to, userName, userMail, ...rest }) => ({ startDate: from, endDate: to, title: userName + ' ' + userMail, ...rest })
   const appointments = bookings.map(convertFromBookingToAppointment)
 
 
@@ -83,7 +83,7 @@ const WeekCalendar = () => {
     >
       <DayView
         startDayHour={8}
-        endDayHour={13}
+        endDayHour={24}
       />
       <ViewState />
       <WeekView

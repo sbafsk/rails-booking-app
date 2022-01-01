@@ -11,7 +11,6 @@ import {
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
 import moment from "moment"
-import BookingList from "./AllBookings"
 moment.locale("es")
 
 import { useBookings } from "../../context"
@@ -87,7 +86,7 @@ export default function BookingForm() {
     }
   }
 
- 
+
 
   const initialValues: IBookingForm = {
     room: filter.room,
@@ -219,16 +218,18 @@ export default function BookingForm() {
             >
               Guardar
             </Button>
-            <Button  variant="outlined">
-            <Link to="/listado" style={{ textDecoration: 'none',
-                                          hover: 'none' }}>Listado de Reservas</Link></Button>
-              
-            
-            
+            <Button variant="outlined">
+              <Link to="/listado" style={{
+                textDecoration: 'none',
+                hover: 'none'
+              }}>Listado de Reservas</Link></Button>
+
+
+
 
 
           </Form>
-          
+
         )
       }}
     </Formik>
